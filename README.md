@@ -16,7 +16,7 @@ Available at: https://www.nuget.org/packages/ConController
 To include it in a `.NET Core` project:
 
 ```shell
-$ dotnet add package LinearTsvParser
+$ dotnet add package ConController
 ```
 
 # Example 1: sync with obligatory parameters
