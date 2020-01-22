@@ -64,6 +64,11 @@ namespace ConController {
             public List<string> Arguments { get; } = new List<string>();
 
             public ParsedParameters(string[] args) {
+                if (args == null) {
+                    ShowHelpScreen = true;
+                    return;
+                }
+
                 foreach(string arg in args) {
                     this.parseParameterValues(arg);
                 }
@@ -127,6 +132,11 @@ namespace ConController {
         public static async Task<int> Run(string[] args) {
             CLI.ParseMetadata();
             var cmd = new ParsedParameters(args);
+
+            if (cmd.ShowHelpScreen) {
+                // TODO: Show help screen
+                return 1;
+            }
 
             if (!controllers.ContainsKey(cmd.Controller)) {
                 throw new CommandParserException($"Controller '{cmd.Controller}' is unknown.");
